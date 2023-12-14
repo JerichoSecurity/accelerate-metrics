@@ -126,6 +126,7 @@ Preparing for deployment:
 
 ## Acknowledgements
 
+- Thank you to [Steve Brudz](https://github.com/sbrudz) for https://github.com/sbrudz/accelerate-metrics.
 - Thank you to [Red Gate Software](https://www.red-gate.com/) for open sourcing their metrics code. The code in this project is greatly inspired by their approach.
 - Thank you to [Def Method](https://defmethod.io) for supporting my work on this project.
 - Thank you to [Rhino](https://www.sayrhino.com/) for supporting this project.
@@ -141,7 +142,3 @@ Preparing for deployment:
 - https://github.com/samsmithnz/DevOpsMetrics
 - https://github.com/brigonzalez/DORAmeter
 - https://github.com/Trendyol/four-key
-
-Possible new features:
-
-- [ ] show lead times per release on the Lead Time chart
