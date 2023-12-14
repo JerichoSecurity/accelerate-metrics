@@ -93,11 +93,7 @@ The Deployment Frequency chart plots the average deployment frequency using a lo
 
 ### Change Fail Percentage
 
-Coming Soon
-
 ### Mean Time to Restore (MTTR)
-
-Coming Soon
 
 ### Other Considerations for Stability Metrics
 
