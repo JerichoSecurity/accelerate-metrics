@@ -1,5 +1,8 @@
 **NOTE:** The half-completed version still seems helpful since existing services don't seem to support Heroku out of the box. (e.g, [FourKeys](https://github.com/GoogleCloudPlatform/fourkeys), [Sleuth](https://www.sleuth.io/), [LinearB](https://linearb.io/)).
 
+> [!WARNING]
+> YMMV
+
 # accelerate-metrics
 
 A GitHub action to calculate [DevOps Research & Assessment](https://www.devops-research.com/research.html) (DORA) metrics from Heroku release data.
@@ -30,15 +33,15 @@ Make sure to add `HEROKU_API_TOKEN` to your GitHub secrets. It needs to have rea
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v2
+    uses: actions/checkout@v4
     with:
       fetch-depth: 0
   - name: Generate Accelerate Metrics
-    uses: sbrudz/accelerate-metrics@v1
+    uses: JerichoSecurity/accelerate-metrics@main
     with:
       heroku_api_token: ${{ secrets.HEROKU_API_TOKEN }}
       heroku_app_name: "your-app-name"
-  - uses: actions/upload-artifact@v2
+  - uses: actions/upload-artifact@v4
     name: Store metrics report
     with:
       name: accelerate-metrics-report
@@ -105,7 +108,7 @@ The challenge is that "degraded service" will likely mean different things for d
 
 Prerequisites:
 
-- node.js >= 12.14
+- node.js >= 20.10
 
 Setup:
 
