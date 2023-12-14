@@ -1,4 +1,4 @@
-import { DateTime, Duration, DurationObject, Interval } from "luxon";
+import { DateTime, Duration, DurationLikeObject, Interval } from "luxon";
 import { mean } from "mathjs";
 import { Deployment } from "./heroku-deployments";
 
@@ -14,14 +14,17 @@ export const calculateDeploymentFrequency = (
       deploymentTimeStampsInWindow,
       window
     );
-    return [window.end.toMillis(), toHertz(meanFrequency)];
+
+    const windowEndMillis = window.end?.toMillis() ?? 0;
+
+    return [windowEndMillis, toHertz(meanFrequency)];
   });
 };
 
 export const meanFrequencyPerTimePeriod = (
   timestamps: DateTime[],
   window: Interval,
-  timePeriod: DurationObject
+  timePeriod: DurationLikeObject
 ): number => {
   const bins = window.splitBy(timePeriod);
   const countsPerBin = bins.map((bin) => {
@@ -35,7 +38,7 @@ export const meanFrequencyPerTimePeriod = (
   return mean(countsPerBin);
 };
 
-const TIME_PERIODS: DurationObject[] = [
+const TIME_PERIODS: DurationLikeObject[] = [
   { hour: 1 },
   { day: 1 },
   { week: 1 },
@@ -46,7 +49,7 @@ const TIME_PERIODS: DurationObject[] = [
 
 export interface FrequencyOverTimePeriod {
   amount: number;
-  timePeriod: DurationObject;
+  timePeriod: DurationLikeObject;
 }
 
 export const bestMeanFrequency = (

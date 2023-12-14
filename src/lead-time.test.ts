@@ -1,4 +1,5 @@
-import { mocked } from "ts-jest/utils";
+import { mocked } from "jest-mock";
+
 import { DateTime, Interval } from "luxon";
 import {
   calculateAverageLeadTime,
@@ -10,11 +11,10 @@ import { doesCommitExist, getCommitsBetweenRevisions } from "./git-utils";
 import { Deployment } from "./heroku-deployments";
 
 jest.mock("./git-utils");
-const mockedGetCommitsBetweenRevisions = mocked(
-  getCommitsBetweenRevisions,
-  true
-);
-const mockedDoesCommitExist = mocked(doesCommitExist, true);
+const mockedGetCommitsBetweenRevisions = mocked(getCommitsBetweenRevisions, {
+  shallow: false,
+});
+const mockedDoesCommitExist = mocked(doesCommitExist, { shallow: false });
 
 describe("lead-time functions", () => {
   const time1 = DateTime.utc(2020, 6, 10);
@@ -121,8 +121,11 @@ describe("lead-time functions", () => {
           window,
           deployments
         );
+
+        const windowEndMillis = window.end?.toMillis() ?? 0;
+
         expect(result).toEqual([
-          window.end.toMillis(),
+          windowEndMillis,
           7 * 86400000, // 7 days in milliseconds
         ]);
       });
@@ -139,8 +142,11 @@ describe("lead-time functions", () => {
           window,
           deployments
         );
+
+        const windowEndMillis = window.end?.toMillis() ?? 0;
+
         expect(result).toEqual([
-          window.end.toMillis(),
+          windowEndMillis,
           5 * 86400000, // 5 days in milliseconds
         ]);
       });
@@ -152,7 +158,10 @@ describe("lead-time functions", () => {
           window,
           deployments
         );
-        expect(result).toEqual([window.end.toMillis(), 0]);
+
+        const windowEndMillis = window.end?.toMillis() ?? 0;
+
+        expect(result).toEqual([windowEndMillis, 0]);
       });
     });
   });
