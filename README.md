@@ -146,16 +146,6 @@ Preparing for deployment:
 - https://github.com/brigonzalez/DORAmeter
 - https://github.com/Trendyol/four-key
 
-## TODO List
-
-- [ ] Capture degraded service events from GitHub issues
-- [ ] MTTR graph
-- [ ] Change/Fail graph
-- [x] better error handling/messages if a commit doesn't exist in the git history
-- [x] convert to a github action so that the report can be generated regularly
-- [ ] Capture degraded service events from Heroku rollbacks
-- [x] show releases per day as a histogram on the Deploy Frequency chart
-
 Possible new features:
 
 - [ ] show lead times per release on the Lead Time chart
