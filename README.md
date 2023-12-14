@@ -1,4 +1,4 @@
-**NOTE:** I've decided to archive this repository because it's only half-completed and there are now other viable options available (e.g, [FourKeys](https://github.com/GoogleCloudPlatform/fourkeys), [Sleuth](https://www.sleuth.io/), [LinearB](https://linearb.io/)).
+**NOTE:** The half-completed version still seems helpful since existing services don't seem to support Heroku out of the box. (e.g, [FourKeys](https://github.com/GoogleCloudPlatform/fourkeys), [Sleuth](https://www.sleuth.io/), [LinearB](https://linearb.io/)).
 
 # accelerate-metrics
 
