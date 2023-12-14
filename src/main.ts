@@ -38,7 +38,11 @@ async function run(): Promise<void> {
     );
     core.setOutput("report", reportFileName);
   } catch (error) {
-    core.setFailed(error);
+    if (error instanceof Error) {
+      core.setFailed(error);
+    } else {
+      core.setFailed("An unknown error occurred");
+    }
   }
 }
 

@@ -17,7 +17,7 @@ describe("getDeployments", () => {
   describe("when the Heroku API provides release data", () => {
     const createdAt = DateTime.utc(2020, 8, 20, 11);
     const r1: HerokuPlatformApiRelease = {
-      created_at: createdAt.toISO(),
+      created_at: createdAt.toISO() ?? undefined,
       description: "Deploy 99912345",
     };
     const releases = [r1];

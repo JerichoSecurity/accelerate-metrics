@@ -32,11 +32,18 @@ export const calculateMeanLeadTimeForWindow = async (
   const leadTimes = await Promise.all(
     deployPairs.map(async ([start, end]) => getLeadTimes(start, end))
   );
+
+  const windowEndMillis = window.end?.toMillis() ?? 0;
+
   if (leadTimes.length === 0) {
-    return [window.end.toMillis(), 0];
+    return [windowEndMillis, 0];
   }
-  const meanLeadTime = mean(leadTimes);
-  return [window.end.toMillis(), meanLeadTime];
+
+  // Flatten the array of lead time arrays and then calculate the mean
+  const flattenedLeadTimes = leadTimes.flat();
+  const meanLeadTime = mean(flattenedLeadTimes);
+
+  return [windowEndMillis, meanLeadTime];
 };
 
 export const getPairs = <T>(items: T[]): Array<T[]> => {
